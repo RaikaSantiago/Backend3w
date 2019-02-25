@@ -6,11 +6,14 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require __DIR__ . '/../vendor/autoload.php';
 
 
-
 $app = new \Slim\App();
+
+//CONEXION A LA BASE DE DATOS PROYECTO UV-WWW
 
 $db = new mysqli("localhost","root","","derrocha");
 
+//---------GET-SELECT PROYECTO BACKEND UV-WWWW------------------
+// CONSULTA TODOS LOS USUARIOS EN LA BASE DE DATOS
 $app->get("/usuarios", function() use($app, $db){
 	
 	$sql = 'SELECT * FROM usuarios';
@@ -30,7 +33,113 @@ $app->get("/usuarios", function() use($app, $db){
 
 
 });
+//CONSULTA TODOS LOS ROLES QUE HAY EN LA BASE DE DATOS
+$app->get("/roles", function() use($app, $db){
+	
+	$sql = 'SELECT * FROM roles';
 
+	$query = $db->query($sql);
+
+	$roles = array();
+	while($rol = $query->fetch_assoc()){
+		$roles[] = $rol;
+	}
+
+	$result = array('status' => 'success',
+						'code' => 200,
+						'data' => $roles);
+
+	echo json_encode($result);
+
+
+});
+
+//CONSULTA TODOS LOS DE INNOVACION QUE HAY EN LA BASE DE DATOS
+$app->get("/innovacion", function() use($app, $db){
+	
+	$sql = 'SELECT * FROM innovacion';
+
+	$query = $db->query($sql);
+
+	$innovaciones = array();
+	while($innovacion = $query->fetch_assoc()){
+		$innovaciones[] = $innovacion;
+	}
+
+	$result = array('status' => 'success',
+						'code' => 200,
+						'data' => $innovaciones);
+
+	echo json_encode($result);
+
+
+});
+
+//CONSULTA TODOS LOS DATOS DE GESTION HUMANA QUE HAY EN LA BASE DE DATOS
+$app->get("/gestionhumana", function() use($app, $db){
+	
+	$sql = 'SELECT * FROM gestionhumana';
+
+	$query = $db->query($sql);
+
+	$gestioneshumanas = array();
+	while($gestionhumana = $query->fetch_assoc()){
+		$gestioneshumanas[] = $gestionhumana;
+	}
+
+	$result = array('status' => 'success',
+						'code' => 200,
+						'data' => $gestioneshumanas);
+
+	echo json_encode($result);
+
+
+});
+
+//CONSULTA TODOS LOS DATOS DE FINANCIERA QUE HAY EN LA BASE DE DATOS
+$app->get("/financiera", function() use($app, $db){
+	
+	$sql = 'SELECT * FROM financiera';
+
+	$query = $db->query($sql);
+
+	$financieras = array();
+	while($financiera = $query->fetch_assoc()){
+		$financieras[] = $financiera;
+	}
+
+	$result = array('status' => 'success',
+						'code' => 200,
+						'data' => $financieras);
+
+	echo json_encode($result);
+
+
+});
+
+
+
+//CONSULTA TODOS LOS DATOS DE CLIENTE QUE HAY EN LA BASE DE DATOS
+$app->get("/cliente", function() use($app, $db){
+	
+	$sql = 'SELECT * FROM cliente';
+
+	$query = $db->query($sql);
+
+	$clientes = array();
+	while($cliente = $query->fetch_assoc()){
+		$clientes[] = $cliente;
+	}
+
+	$result = array('status' => 'success',
+						'code' => 200,
+						'data' => $clientes);
+
+	echo json_encode($result);
+
+
+});
+//----------- POST-INSERT DB PROYECTO UV-WWWW----------------
 $app->post("/usuarios", function() use($app, $db){
 
 	
