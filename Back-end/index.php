@@ -5,7 +5,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
 $app = new \Slim\App();
 
 //CONEXION A LA BASE DE DATOS PROYECTO UV-WWW
@@ -13,6 +12,7 @@ $app = new \Slim\App();
 $db = new mysqli("localhost","root","","derrocha");
 
 //---------GET-SELECT PROYECTO BACKEND UV-WWWW------------------
+
 // CONSULTA TODOS LOS USUARIOS EN LA BASE DE DATOS
 $app->get("/usuarios", function() use($app, $db){
 	
@@ -117,8 +117,6 @@ $app->get("/financiera", function() use($app, $db){
 
 });
 
-
-
 //CONSULTA TODOS LOS DATOS DE CLIENTE QUE HAY EN LA BASE DE DATOS
 $app->get("/cliente", function() use($app, $db){
 	
@@ -137,9 +135,10 @@ $app->get("/cliente", function() use($app, $db){
 
 	echo json_encode($result);
 
-
 });
+
 //----------- POST-INSERT DB PROYECTO UV-WWWW----------------
+//INSERT INTO USUARIOS
 $app->post("/usuarios", function() use($app, $db){
 
 	
@@ -169,6 +168,8 @@ $app->post("/usuarios", function() use($app, $db){
 
 });
 
+//INSERT INTO ROLES 
+
 $app->post("/roles", function() use($app, $db){
 
 	
@@ -197,6 +198,8 @@ $app->post("/roles", function() use($app, $db){
 	echo json_encode($result);
 
 });
+
+// INSERT INTO INNOVACION
 
 $app->post("/innovacion", function() use($app, $db){
 
@@ -230,6 +233,8 @@ $app->post("/innovacion", function() use($app, $db){
 
 });
 
+//INSERT INTO GESTION HUMANA 
+
 $app->post("/gestionhumana", function() use($app, $db){
 
 	
@@ -262,6 +267,8 @@ $app->post("/gestionhumana", function() use($app, $db){
 
 });
 
+//INSERT INTO  FINANCIERA 
+
 $app->post("/financiera", function() use($app, $db){
 
 	
@@ -293,6 +300,8 @@ $app->post("/financiera", function() use($app, $db){
 	echo json_encode($result);
 
 });
+
+//INSERT INTO CLIENTE 
 
 $app->post("/cliente", function() use($app, $db){
 
